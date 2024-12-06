@@ -9,14 +9,13 @@ const dateTimeInput = document.getElementById('dateTimeInput');
 const addButton = document.getElementById('addButton');
 const filterButtons = document.querySelectorAll('.filter-btn');
 
-// Set min datetime to now
+// Set minimum datetime to now
 dateTimeInput.min = DateTimeUtils.formatDateTimeLocal(new Date());
 
 // Event Listeners
 addButton.addEventListener('click', addTodo);
-todoInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') addTodo();
-});
+todoInput.addEventListener('input', () => hideError(todoInput));
+dateTimeInput.addEventListener('input', () => hideError(dateTimeInput));
 
 filterButtons.forEach(button => {
     button.addEventListener('click', (e) => {
@@ -26,26 +25,32 @@ filterButtons.forEach(button => {
     });
 });
 
+// Show error message for invalid input
 function showError(input, message) {
-    const errorElement = input.nextElementSibling;
+    const errorElement = input.parentElement.querySelector('.error-message');
     if (errorElement) {
         errorElement.textContent = message;
         errorElement.style.display = 'block';
     }
+    input.classList.add('invalid');
 }
 
+// Hide error message
 function hideError(input) {
-    const errorElement = input.nextElementSibling;
+    const errorElement = input.parentElement.querySelector('.error-message');
     if (errorElement) {
         errorElement.style.display = 'none';
     }
+    input.classList.remove('invalid');
 }
 
+// Add a new task with validation
 function addTodo() {
     const text = todoInput.value.trim();
     const dateTime = dateTimeInput.value;
     let isValid = true;
 
+    // Validate task name
     if (!text) {
         showError(todoInput, "Task name cannot be empty.");
         isValid = false;
@@ -53,6 +58,7 @@ function addTodo() {
         hideError(todoInput);
     }
 
+    // Validate date and time
     const parsedDate = new Date(dateTime);
     if (!dateTime || isNaN(parsedDate.getTime()) || parsedDate <= new Date()) {
         showError(dateTimeInput, "Please select a valid future date and time.");
@@ -63,6 +69,7 @@ function addTodo() {
 
     if (!isValid) return;
 
+    // Add the valid task
     todoList.addTodo(text, parsedDate);
     todoInput.value = '';
     dateTimeInput.value = '';

@@ -86,12 +86,16 @@ input[type="datetime-local"]:focus {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
-input[type="text"] {
-  flex: 1;
+input.invalid {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
 }
 
-input[type="datetime-local"] {
-  width: 200px;
+.error-message {
+  color: var(--danger-color);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+  display: none;
 }
 
 button {
@@ -181,19 +185,6 @@ button:hover {
   accent-color: var(--primary-color);
 }
 
-.todo-content {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.todo-text {
-  font-size: 1.1rem;
-  color: var(--text-color);
-}
-
 .timer {
   background-color: var(--primary-color);
   color: white;
@@ -230,29 +221,22 @@ button:hover {
   color: white;
 }
 
-.error-message {
-  color: var(--danger-color);
-  font-size: 0.9rem;
-  margin-top: 0.2rem;
-  display: none;
-}
-
 @media (max-width: 768px) {
   .add-todo {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   input[type="datetime-local"] {
-      width: 100%;
+    width: 100%;
   }
 
   .todo-content {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .timer {
-      width: 100%;
-      text-align: left;
+    width: 100%;
+    text-align: left;
   }
 }
