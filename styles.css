@@ -63,6 +63,12 @@ h1 {
   margin-bottom: 2.5rem;
 }
 
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
 input[type="text"],
 input[type="datetime-local"] {
   padding: 0.8rem 1.2rem;
@@ -222,6 +228,13 @@ button:hover {
 .delete-btn:hover {
   background-color: var(--danger-color);
   color: white;
+}
+
+.error-message {
+  color: var(--danger-color);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+  display: none;
 }
 
 @media (max-width: 768px) {

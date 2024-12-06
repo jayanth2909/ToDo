@@ -13,8 +13,14 @@
         <p class="subtitle">Organize your tasks with precision timing</p>
         
         <div class="add-todo">
-            <input type="text" id="todoInput" placeholder="Add a new task...">
-            <input type="datetime-local" id="dateTimeInput">
+            <div class="input-group">
+                <input type="text" id="todoInput" placeholder="Add a new task...">
+                <span class="error-message"></span>
+            </div>
+            <div class="input-group">
+                <input type="datetime-local" id="dateTimeInput">
+                <span class="error-message"></span>
+            </div>
             <button id="addButton">
                 <i class="fas fa-plus"></i> Add Task
             </button>

@@ -26,15 +26,46 @@ filterButtons.forEach(button => {
     });
 });
 
+function showError(input, message) {
+    const errorElement = input.nextElementSibling;
+    if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+    }
+}
+
+function hideError(input) {
+    const errorElement = input.nextElementSibling;
+    if (errorElement) {
+        errorElement.style.display = 'none';
+    }
+}
+
 function addTodo() {
     const text = todoInput.value.trim();
     const dateTime = dateTimeInput.value;
+    let isValid = true;
 
-    if (text && dateTime) {
-        todoList.addTodo(text, new Date(dateTime));
-        todoInput.value = '';
-        dateTimeInput.value = '';
+    if (!text) {
+        showError(todoInput, "Task name cannot be empty.");
+        isValid = false;
+    } else {
+        hideError(todoInput);
     }
+
+    const parsedDate = new Date(dateTime);
+    if (!dateTime || isNaN(parsedDate.getTime()) || parsedDate <= new Date()) {
+        showError(dateTimeInput, "Please select a valid future date and time.");
+        isValid = false;
+    } else {
+        hideError(dateTimeInput);
+    }
+
+    if (!isValid) return;
+
+    todoList.addTodo(text, parsedDate);
+    todoInput.value = '';
+    dateTimeInput.value = '';
 }
 
 function setActiveFilter(activeButton) {
