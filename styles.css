@@ -161,36 +161,37 @@ input.invalid {
 }
 
 .delete-btn {
-  background: none; /* Remove any background */
-  color: var(--danger-color); /* Use only color for delete icon */
-  padding: 0; /* Remove padding */
-  border: none; /* Remove border */
-  font-size: 1.5rem; /* Increase icon size */
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--danger-color);
+  font-size: 1.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.2s ease;
 }
 
 .delete-btn:hover {
-  color: var(--danger-color); /* Change only icon color on hover */
-  background: none; /* Ensure no background appears */
+  color: var(--primary-hover);
 }
 
 /* General Button Styling */
 button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   padding: 0.8rem 1.5rem;
   border: none;
   border-radius: 12px;
   background-color: var(--primary-color);
   color: white;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
 }
 
 button:hover {
@@ -210,15 +211,14 @@ button:hover {
   background-color: transparent;
   color: var(--text-light);
   border: 2px solid var(--border-color);
-  font-size: 0.9rem;
   padding: 0.5rem 1rem;
   border-radius: 8px;
+  font-size: 0.9rem;
 }
 
 .filter-btn:hover {
   background-color: var(--background-start);
   color: var(--primary-color);
-  box-shadow: none;
 }
 
 .filter-btn.active {
@@ -227,6 +227,7 @@ button:hover {
   border-color: var(--primary-color);
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
   .add-todo {
     flex-direction: column;
